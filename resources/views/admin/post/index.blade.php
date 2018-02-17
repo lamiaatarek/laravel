@@ -32,12 +32,11 @@
                         <td>{{$post->slug}}</td>
                         <td> <a href="{{ route('post.edit',$post->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                         <td>
-                         <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                              </form>
-                              <a href="" name="submit" >
-                              <span class="glyphicon glyphicon-trash" ></span></a>
+                               {!! Form::open(['action'=>['Admin\postcontroller@destroy',$post->id],'method'=>'post','class'=>'pull-center'])
+                             !!}
+                         {{Form::hidden('_method','DELETE')}}
+                         {{Form::submit('delete', ['class' => 'btn btn-dafault'])}}
+                        {!! Form::close() !!}
 
                         </td>
                       </tr>
